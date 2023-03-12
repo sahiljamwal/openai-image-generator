@@ -6,6 +6,7 @@ config();
 import helmet from "helmet";
 import compression from "compression";
 import apiRouter from "./routes";
+import path from "path";
 
 const app = express();
 
@@ -19,7 +20,7 @@ app.use(
 app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: false }));
-
+app.use(express.static(path.join(__dirname, "public")));
 app.use(
   morgan((tokens, req, res) => {
     return [
